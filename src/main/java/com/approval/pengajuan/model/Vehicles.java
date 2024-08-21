@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "m_kendaraan")
@@ -42,6 +43,14 @@ public class Vehicles {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "deleted_at")
     private Timestamp deleted_at;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_kendaraan")
+    private List<Pinjaman> pinjaman;
+
+    public Vehicles() {
+
+    }
 
 
     public Integer getId_kendaraan() {
@@ -124,10 +133,16 @@ public class Vehicles {
         this.deleted_at = deleted_at;
     }
 
-    public Vehicles() {
+    public List<Pinjaman> getPinjaman() {
+        return pinjaman;
     }
 
-    public Vehicles(Integer id_kendaraan, String dealer, String merk, String model, String type, String warna, BigDecimal harga, Timestamp created_at, Timestamp updated_at, Timestamp deleted_at) {
+    public void setPinjaman(List<Pinjaman> pinjaman) {
+        this.pinjaman = pinjaman;
+    }
+
+
+    public Vehicles(Integer id_kendaraan, String dealer, String merk, String model, String type, String warna, BigDecimal harga, Timestamp created_at, Timestamp updated_at, Timestamp deleted_at, List<Pinjaman> pinjaman) {
         this.id_kendaraan = id_kendaraan;
         this.dealer = dealer;
         this.merk = merk;
@@ -138,5 +153,6 @@ public class Vehicles {
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.deleted_at = deleted_at;
+        this.pinjaman = pinjaman;
     }
 }

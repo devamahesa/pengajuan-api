@@ -8,5 +8,7 @@ public interface VehiclesService {
 
     public Vehicles getVehicle(String id);
 
+    List<Vehicles> getVehiclesByPinjaman();
+
     public List<Vehicles> getAllVehicles();
 }

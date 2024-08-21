@@ -26,4 +26,9 @@ public class VehiclesController {
     public Vehicles getVehicles(@PathVariable("id") String id){
         return vehiclesService.getVehicle(id);
     }
+
+    @GetMapping("/pinjaman")
+    public List<Vehicles> getVehiclesPinjaman(){
+        return vehiclesService.getVehiclesByPinjaman();
+    }
 }

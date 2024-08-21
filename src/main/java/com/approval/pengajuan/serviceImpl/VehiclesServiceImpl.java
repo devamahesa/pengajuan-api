@@ -6,6 +6,7 @@ import com.approval.pengajuan.repository.VehiclesRepository;
 import com.approval.pengajuan.service.VehiclesService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +26,18 @@ public class VehiclesServiceImpl implements VehiclesService {
         else{
             return vehiclesRepository.findById(id).get();
         }
+    }
+
+    @Override
+    public List<Vehicles> getVehiclesByPinjaman(){
+        List<Vehicles> data = vehiclesRepository.findAll();
+        List<Vehicles> newData = new ArrayList<Vehicles>();
+        for (Vehicles datum : data) {
+            if (datum.getPinjaman().size() != 0) {
+                newData.add(datum);
+            }
+        }
+        return newData;
     }
 
     @Override
