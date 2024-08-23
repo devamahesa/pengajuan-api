@@ -4,6 +4,7 @@ import com.approval.pengajuan.model.Pinjaman;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PinjamanService {
 
@@ -18,6 +19,8 @@ public interface PinjamanService {
     public Pinjaman  getPinjaman(String id);
 
     public List<Pinjaman> getAllPinjaman();
+
+    List<Pinjaman> getPinjamanByIdKendaraan(String idKendaraan);
 
     Page<Pinjaman> getPinjamanPagination(int pageNo, int pageSize, String sortBy);
 }

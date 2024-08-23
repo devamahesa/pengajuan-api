@@ -23,4 +23,9 @@ public class PinjamanController {
     public List<Pinjaman> getAllPinjaman(){
         return pinjamanService.getAllPinjaman();
     }
+
+    @GetMapping("/vehicle/{id}")
+    public List<Pinjaman> getPinjamanByVehicles(@PathVariable("id") String id){
+        return pinjamanService.getPinjamanByIdKendaraan(id);
+    }
 }

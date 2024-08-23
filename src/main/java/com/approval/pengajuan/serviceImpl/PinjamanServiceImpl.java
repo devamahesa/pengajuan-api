@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PinjamanServiceImpl implements PinjamanService {
@@ -44,6 +45,11 @@ public class PinjamanServiceImpl implements PinjamanService {
     @Override
     public List<Pinjaman> getAllPinjaman() {
         return pinjamanRepository.findAll();
+    }
+
+    @Override
+    public List<Pinjaman> getPinjamanByIdKendaraan(String id_kendaraan){
+        return pinjamanRepository.findPinjamanByIdKendaraan(Integer.valueOf(id_kendaraan));
     }
 
     @Override

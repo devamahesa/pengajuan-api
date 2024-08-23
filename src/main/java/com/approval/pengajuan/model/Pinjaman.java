@@ -31,7 +31,7 @@ public class Pinjaman {
     private Vehicles vehicles; */
 
     @Column(name = "id_kendaraan")
-    private Integer id_kendaraan;
+    private Integer idKendaraan;
 
     public Integer getId_pinjaman() {
         return id_pinjaman;
@@ -74,11 +74,11 @@ public class Pinjaman {
     }
 
     public Integer getIdKendaraan(){
-        return id_kendaraan;
+        return idKendaraan;
     }
 
-    public void setIdKendaraan(Integer id_kendaraan) {
-        this.id_kendaraan = id_kendaraan;
+    public void setIdKendaraan(Integer idKendaraan) {
+        this.idKendaraan = idKendaraan;
     }
 
     /*
@@ -93,13 +93,13 @@ public class Pinjaman {
     public Pinjaman() {
     }
 
-    public Pinjaman(Integer id_pinjaman, String asuransi, BigDecimal downPayment, Integer lamaKredit, BigDecimal angsuran, Integer id_kendaraan) {
+    public Pinjaman(Integer id_pinjaman, String asuransi, BigDecimal downPayment, Integer lamaKredit, BigDecimal angsuran, Integer idKendaraan) {
         this.id_pinjaman = id_pinjaman;
         this.asuransi = asuransi;
         this.downPayment = downPayment;
         this.lamaKredit = lamaKredit;
         this.angsuran = angsuran;
         //this.vehicles = vehicles;
-        this.id_kendaraan = id_kendaraan;
+        this.idKendaraan = idKendaraan;
     }
 }
