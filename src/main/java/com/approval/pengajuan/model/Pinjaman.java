@@ -1,10 +1,17 @@
 package com.approval.pengajuan.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.relational.core.sql.In;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "m_pinjaman")
 public class Pinjaman {
@@ -25,81 +32,6 @@ public class Pinjaman {
     @Column(name = "angsuran")
     private BigDecimal angsuran;
 
-    /*
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_kendaraan", referencedColumnName = "id_kendaraan")
-    private Vehicles vehicles; */
-
     @Column(name = "id_kendaraan")
     private Integer idKendaraan;
-
-    public Integer getId_pinjaman() {
-        return id_pinjaman;
-    }
-
-    public void setId_pinjaman(Integer id_pinjaman) {
-        this.id_pinjaman = id_pinjaman;
-    }
-
-    public String getAsuransi() {
-        return asuransi;
-    }
-
-    public void setAsuransi(String asuransi) {
-        this.asuransi = asuransi;
-    }
-
-    public BigDecimal getDownPayment() {
-        return downPayment;
-    }
-
-    public void setDownPayment(BigDecimal downPayment) {
-        this.downPayment = downPayment;
-    }
-
-    public Integer getLamaKredit() {
-        return lamaKredit;
-    }
-
-    public void setLamaKredit(Integer lamaKredit) {
-        this.lamaKredit = lamaKredit;
-    }
-
-    public BigDecimal getAngsuran() {
-        return angsuran;
-    }
-
-    public void setAngsuran(BigDecimal angsuran) {
-        this.angsuran = angsuran;
-    }
-
-    public Integer getIdKendaraan(){
-        return idKendaraan;
-    }
-
-    public void setIdKendaraan(Integer idKendaraan) {
-        this.idKendaraan = idKendaraan;
-    }
-
-    /*
-    public Vehicles getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(Vehicles vehicles) {
-        this.vehicles = vehicles;
-    } */
-
-    public Pinjaman() {
-    }
-
-    public Pinjaman(Integer id_pinjaman, String asuransi, BigDecimal downPayment, Integer lamaKredit, BigDecimal angsuran, Integer idKendaraan) {
-        this.id_pinjaman = id_pinjaman;
-        this.asuransi = asuransi;
-        this.downPayment = downPayment;
-        this.lamaKredit = lamaKredit;
-        this.angsuran = angsuran;
-        //this.vehicles = vehicles;
-        this.idKendaraan = idKendaraan;
-    }
 }
