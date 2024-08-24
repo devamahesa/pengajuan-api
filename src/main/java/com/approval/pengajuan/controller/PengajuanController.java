@@ -33,7 +33,6 @@ public class PengajuanController {
 
     @PostMapping
     public String createPengajuan(
-            @RequestParam(name = "noPengajuan") String noPengajuan,
             @RequestParam(name = "idCustomer") String idCustomer,
             @RequestParam(name = "idKendaraan") String idKendaraan,
             @RequestParam(name = "idPinjaman") String idPinjaman
@@ -42,7 +41,7 @@ public class PengajuanController {
             Customer customer = customerService.getCustomer(idCustomer);
             Vehicles vehicle = vehiclesService.getVehicle(idKendaraan);
             Pinjaman pinjaman = pinjamanService.getPinjaman(idPinjaman);
-            pengajuanService.createPengajuan(noPengajuan, customer, vehicle, pinjaman);
+            pengajuanService.createPengajuan(customer, vehicle, pinjaman);
             return "Pengajuan berhasil dibuat";
         } catch (Exception e){
             throw new Exception(e.getMessage());

@@ -20,7 +20,7 @@ public class Pengajuan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pengajuan")
-    private Integer id_pengajuan;
+    private Integer idPengajuan;
 
     @Column(name = "no_pengajuan")
     private String noPengajuan;

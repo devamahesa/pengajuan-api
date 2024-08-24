@@ -9,10 +9,11 @@ import java.util.List;
 
 public interface PengajuanService {
 
-    public void createPengajuan(String noPengajuan, Customer customer, Vehicles vehicles, Pinjaman pinjaman);
+    public void createPengajuan(Customer customer, Vehicles vehicles, Pinjaman pinjaman);
 
     public Pengajuan getPengajuan(String id);
 
     public List<Pengajuan> getAllPengajuan();
 
+    String generateNoPengajuan();
 }

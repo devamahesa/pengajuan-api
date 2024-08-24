@@ -14,6 +14,8 @@ import java.util.List;
 @Service
 public class PengajuanServiceImpl implements PengajuanService {
 
+    private static final Integer NUMBER_LENGTH = 3;
+
     @Autowired
     PengajuanRepository pengajuanRepository;
     public PengajuanServiceImpl(
@@ -22,8 +24,10 @@ public class PengajuanServiceImpl implements PengajuanService {
     }
 
     @Override
-    public void createPengajuan(String noPengajuan, Customer customer, Vehicles vehicles, Pinjaman pinjaman) {
+    public void createPengajuan(Customer customer, Vehicles vehicles, Pinjaman pinjaman) {
         Pengajuan pengajuan = new Pengajuan();
+        String noPengajuan = generateNoPengajuan();
+
         if(pengajuanRepository.findPengajuanByNoPengajuan(noPengajuan).isPresent()){
             throw new NotFoundException("Nomor Pengajuan sudah ada");
         }
@@ -31,6 +35,7 @@ public class PengajuanServiceImpl implements PengajuanService {
             pengajuan.setCustomer(customer);
             pengajuan.setVehicles(vehicles);
             pengajuan.setPinjaman(pinjaman);
+            pengajuan.setStatus("PENGAJUAN");
             pengajuan.setNoPengajuan(noPengajuan);
             pengajuanRepository.save(pengajuan);
         }
@@ -49,5 +54,13 @@ public class PengajuanServiceImpl implements PengajuanService {
     @Override
     public List<Pengajuan> getAllPengajuan() {
         return pengajuanRepository.findAll();
+    }
+
+    @Override
+    public String generateNoPengajuan(){
+        String noPengajuan = pengajuanRepository.findLatestNoPengajuan();
+        int latestNum = Integer.parseInt(noPengajuan.split("/")[2]);
+        String newNumber = String.format("%0" + NUMBER_LENGTH + "d", latestNum + 1);
+        return String.format("CRE/CUST/%s", newNumber);
     }
 }
