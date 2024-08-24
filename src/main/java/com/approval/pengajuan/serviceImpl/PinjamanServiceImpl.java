@@ -1,5 +1,6 @@
 package com.approval.pengajuan.serviceImpl;
 
+import com.approval.pengajuan.exception.NotFoundException;
 import com.approval.pengajuan.model.Pinjaman;
 import com.approval.pengajuan.repository.PinjamanRepository;
 import com.approval.pengajuan.service.PinjamanService;
@@ -7,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PinjamanServiceImpl implements PinjamanService {
@@ -39,7 +39,12 @@ public class PinjamanServiceImpl implements PinjamanService {
 
     @Override
     public Pinjaman getPinjaman(String id) {
-        return null;
+        if(pinjamanRepository.findById(id).isEmpty()){
+            throw new NotFoundException("Tidak ada data pinjaman");
+        }
+        else{
+            return pinjamanRepository.findById(id).get();
+        }
     }
 
     @Override
