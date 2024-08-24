@@ -3,6 +3,7 @@ package com.approval.pengajuan.controller;
 import com.approval.pengajuan.model.Customer;
 import com.approval.pengajuan.service.CustomerService;
 import jakarta.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
@@ -14,10 +15,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
+
+    @Autowired
     CustomerService customerService;
-    public CustomerController(CustomerService customerService){
-        this.customerService = customerService;
-    }
 
     @GetMapping("{id}")
     public Customer getCustomer(@PathVariable("id") String id) {
