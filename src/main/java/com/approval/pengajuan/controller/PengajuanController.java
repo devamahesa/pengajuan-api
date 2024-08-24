@@ -26,6 +26,11 @@ public class PengajuanController {
     VehiclesService vehiclesService;
 
 
+    @GetMapping("nextGeneratedNum")
+    public String getNextGeneratedNum(){
+        return pengajuanService.generateNoPengajuan();
+    }
+
     @GetMapping
     public List<Pengajuan> getAllPengajuan(){
         return pengajuanService.getAllPengajuan();
