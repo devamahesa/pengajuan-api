@@ -34,7 +34,7 @@ maka buat filenya terlebih dahulu pada directory utama
 ````env
 flyway.url = {URL Database}
 flyway.user = {Username Database}
-flyway.password {Password Database}
+flyway.password = {Password Database}
 flyway.schemas = {Schema yang digunakan}
 flyway.table = flyway_schema_history
 flyway.tablespace = pg_default
