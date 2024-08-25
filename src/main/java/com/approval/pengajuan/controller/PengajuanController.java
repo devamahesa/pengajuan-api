@@ -53,4 +53,16 @@ public class PengajuanController {
         }
     }
 
+    @PutMapping("approval/{id}")
+    public Pengajuan setStatusPengajuan(
+            @PathVariable(name = "id") String idPengajuan,
+            @RequestParam(name = "status") String status
+    ) throws Exception{
+        try{
+            return pengajuanService.setStatus(idPengajuan, status);
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

@@ -16,4 +16,6 @@ public interface PengajuanService {
     public List<Pengajuan> getAllPengajuan();
 
     String generateNoPengajuan();
+
+    Pengajuan setStatus(String id, String status);
 }

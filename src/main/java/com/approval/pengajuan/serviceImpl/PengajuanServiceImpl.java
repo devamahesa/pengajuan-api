@@ -9,7 +9,10 @@ import com.approval.pengajuan.service.PengajuanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PengajuanServiceImpl implements PengajuanService {
@@ -27,7 +30,7 @@ public class PengajuanServiceImpl implements PengajuanService {
     public void createPengajuan(Customer customer, Vehicles vehicles, Pinjaman pinjaman) {
         Pengajuan pengajuan = new Pengajuan();
         String noPengajuan = generateNoPengajuan();
-
+        Timestamp date = Timestamp.from(Instant.now());
         if(pengajuanRepository.findPengajuanByNoPengajuan(noPengajuan).isPresent()){
             throw new NotFoundException("Nomor Pengajuan sudah ada");
         }
@@ -37,6 +40,7 @@ public class PengajuanServiceImpl implements PengajuanService {
             pengajuan.setPinjaman(pinjaman);
             pengajuan.setStatus("PENGAJUAN");
             pengajuan.setNoPengajuan(noPengajuan);
+            pengajuan.setCreated_at(date);
             pengajuanRepository.save(pengajuan);
         }
     }
@@ -62,5 +66,24 @@ public class PengajuanServiceImpl implements PengajuanService {
         int latestNum = Integer.parseInt(noPengajuan.split("/")[2]);
         String newNumber = String.format("%0" + NUMBER_LENGTH + "d", latestNum + 1);
         return String.format("CRE/CUST/%s", newNumber);
+    }
+
+    @Override
+    public Pengajuan setStatus(String id, String status){
+        Timestamp updatedDate = Timestamp.from(Instant.now());
+        boolean isPengajuan = Objects.equals(pengajuanRepository.getReferenceById(id).getStatus(), "PENGAJUAN");
+        if(pengajuanRepository.findById(id).isPresent() && isPengajuan){
+            Pengajuan pengajuan = pengajuanRepository.findById(id).get();
+            pengajuan.setStatus(status);
+            pengajuan.setUpdated_at(updatedDate);
+            pengajuanRepository.save(pengajuan);
+            return pengajuan;
+        }
+        else if (!isPengajuan) {
+            throw new NotFoundException("Status tidak dapat diubah");
+        } else{
+            throw new NotFoundException("Data pengajuan tidak ditemukan");
+        }
+
     }
 }
