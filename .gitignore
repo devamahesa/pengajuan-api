@@ -7,7 +7,7 @@ build/
 gradle.properties
 settings.gradle
 src/main/resources/application.properties
-
+src/main/resources/db/migration/
 ### STS ###
 .apt_generated
 .classpath
