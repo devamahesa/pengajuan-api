@@ -54,12 +54,13 @@ public class PengajuanController {
     }
 
     @PutMapping("approval/{id}")
-    public Pengajuan setStatusPengajuan(
+    public String setStatusPengajuan(
             @PathVariable(name = "id") String idPengajuan,
             @RequestParam(name = "status") String status
     ) throws Exception{
         try{
-            return pengajuanService.setStatus(idPengajuan, status);
+            pengajuanService.setStatus(idPengajuan, status);
+            return "Status pengajuan berhasil diubah";
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
